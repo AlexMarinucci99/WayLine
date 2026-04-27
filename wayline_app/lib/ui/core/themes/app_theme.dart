@@ -47,13 +47,21 @@ class AppTheme {
   static const settingsProfileAvatarStart = Color.fromARGB(255, 17, 17, 17);
   static const settingsProfileAvatarEnd = Color.fromARGB(255, 32, 32, 32);
 
-  static ThemeData lightTheme(){
-    final colorScheme = ColorScheme.fromSeed(seedColor: blue, brightness: Brightness.light, surface: screenBackground);
+  static ThemeData lightTheme() {
+    final colorScheme = ColorScheme.fromSeed(
+      seedColor: blue,
+      brightness: Brightness.light,
+      surface: screenBackground,
+    );
 
-    final base = ThemeData(useMaterial3: true, colorScheme: colorScheme, scaffoldBackgroundColor: screenBackground);
-     return base.copyWith(
+    final base = ThemeData(
+      useMaterial3: true,
+      colorScheme: colorScheme,
+      scaffoldBackgroundColor: screenBackground,
+    );
+    return base.copyWith(
       textTheme: GoogleFonts.interTextTheme(base.textTheme).copyWith(
-         headlineLarge: GoogleFonts.inter(
+        headlineLarge: GoogleFonts.inter(
           fontSize: 31,
           fontWeight: FontWeight.w800,
           color: textPrimary,
@@ -109,7 +117,7 @@ class AppTheme {
         ),
       ),
       //appBarTheme
-       appBarTheme: AppBarTheme(
+      appBarTheme: AppBarTheme(
         backgroundColor: Colors.transparent,
         foregroundColor: colorScheme.onSurface,
         elevation: 0,
@@ -121,7 +129,7 @@ class AppTheme {
           letterSpacing: -0.2,
         ),
       ),
-       // Card piatte con angoli arrotondati.
+      // Card piatte con angoli arrotondati.
       cardTheme: CardThemeData(
         color: Colors.white,
         elevation: 0,
@@ -188,14 +196,173 @@ class AppTheme {
         ),
       ),
     );
-  
-
-/*static ThemeData get darkTheme {
-    return ThemeData(
+  }
+   static ThemeData darkTheme() {
+    final colorScheme = ColorScheme.fromSeed(
+      seedColor: blue,
       brightness: Brightness.dark,
-      primarySwatch: Colors.blue,
-      textTheme: GoogleFonts.latoTextTheme(),
+      surface: darkBackground,
     );
-  }*/
+
+    final base = ThemeData(
+      useMaterial3: true,
+      colorScheme: colorScheme,
+      scaffoldBackgroundColor: darkBackground,
+    );
+
+    return base.copyWith(
+      // Typography scura: stessi pesi/dimensioni, colori adattati al dark.
+      textTheme: GoogleFonts.interTextTheme(base.textTheme).copyWith(
+        headlineLarge: GoogleFonts.inter(
+          fontSize: 31,
+          fontWeight: FontWeight.w800,
+          color: darkTextPrimary,
+          letterSpacing: -0.9,
+        ),
+        headlineMedium: GoogleFonts.inter(
+          fontSize: 24,
+          fontWeight: FontWeight.w800,
+          color: darkTextPrimary,
+          letterSpacing: -0.6,
+        ),
+        headlineSmall: GoogleFonts.inter(
+          fontSize: 20,
+          fontWeight: FontWeight.w700,
+          color: darkTextPrimary,
+          letterSpacing: -0.4,
+        ),
+        titleLarge: GoogleFonts.inter(
+          fontSize: 18,
+          fontWeight: FontWeight.w700,
+          color: darkTextPrimary,
+        ),
+        titleMedium: GoogleFonts.inter(
+          fontSize: 14,
+          fontWeight: FontWeight.w700,
+          color: darkTextPrimary,
+        ),
+        bodyLarge: GoogleFonts.inter(
+          fontSize: 14,
+          fontWeight: FontWeight.w500,
+          color: darkTextPrimary,
+        ),
+        bodyMedium: GoogleFonts.inter(
+          fontSize: 13,
+          fontWeight: FontWeight.w500,
+          color: darkTextSecondary,
+        ),
+        bodySmall: GoogleFonts.inter(
+          fontSize: 11.5,
+          fontWeight: FontWeight.w500,
+          color: darkTextTertiary,
+        ),
+        labelLarge: GoogleFonts.inter(
+          fontSize: 10,
+          fontWeight: FontWeight.w600,
+          color: darkTextTertiary,
+          letterSpacing: 0.4,
+        ),
+        labelMedium: GoogleFonts.inter(
+          fontSize: 10,
+          fontWeight: FontWeight.w700,
+          color: darkTextPrimary,
+        ),
+      ),
+      // AppBar scura trasparente, coerente con schermate full-bleed.
+      appBarTheme: AppBarTheme(
+        backgroundColor: Colors.transparent,
+        foregroundColor: darkTextPrimary,
+        elevation: 0,
+        surfaceTintColor: Colors.transparent,
+        titleTextStyle: GoogleFonts.inter(
+          fontSize: 18,
+          fontWeight: FontWeight.w700,
+          color: darkTextPrimary,
+          letterSpacing: -0.2,
+        ),
+      ),
+      // Card scure piatte con superficie dedicata.
+      cardTheme: CardThemeData(
+        color: darkSurface,
+        elevation: 0,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(18)),
+      ),
+      dividerColor: darkBorder,
+      // Chip dark con bordo piu visibile per separarle dallo sfondo.
+      chipTheme: base.chipTheme.copyWith(
+        backgroundColor: darkSurfaceSoft,
+        side: const BorderSide(color: darkBorderStrong),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(18)),
+        labelStyle: GoogleFonts.inter(
+          fontSize: 12,
+          fontWeight: FontWeight.w700,
+          color: darkTextPrimary,
+        ),
+      ),
+      // Campi input in dark mode: superficie scura e focus blu.
+      inputDecorationTheme: InputDecorationTheme(
+        filled: true,
+        fillColor: darkSurface,
+        hintStyle: GoogleFonts.inter(fontSize: 14, color: darkTextTertiary),
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(22),
+          borderSide: BorderSide.none,
+        ),
+        enabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(22),
+          borderSide: BorderSide.none,
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(22),
+          borderSide: const BorderSide(color: blue, width: 1.5),
+        ),
+      ),
+      // Pulsanti primari: stessa identita cromatica del tema chiaro.
+      filledButtonTheme: FilledButtonThemeData(
+        style: FilledButton.styleFrom(
+          backgroundColor: blue,
+          foregroundColor: Colors.white,
+          padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 14),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(14),
+          ),
+          textStyle: GoogleFonts.inter(
+            fontSize: 14,
+            fontWeight: FontWeight.w800,
+          ),
+        ),
+      ),
+      // Pulsanti secondari con testo e bordo leggibili su sfondo scuro.
+      outlinedButtonTheme: OutlinedButtonThemeData(
+        style: OutlinedButton.styleFrom(
+          foregroundColor: darkTextSecondary,
+          side: const BorderSide(color: darkBorderStrong, width: 1.5),
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(13),
+          ),
+          textStyle: GoogleFonts.inter(
+            fontSize: 13,
+            fontWeight: FontWeight.w700,
+          ),
+        ),
+      ),
+      // Switch esplicitamente adattati per mantenere contrasto in dark mode.
+      switchTheme: base.switchTheme.copyWith(
+        thumbColor: WidgetStateProperty.resolveWith((states) {
+          if (states.contains(WidgetState.selected)) {
+            return Colors.white;
+          }
+          return Colors.white;
+        }),
+        trackColor: WidgetStateProperty.resolveWith((states) {
+          if (states.contains(WidgetState.selected)) {
+            return blue;
+          }
+          return darkTextTertiary;
+        }),
+      ),
+    );
   }
 }
+

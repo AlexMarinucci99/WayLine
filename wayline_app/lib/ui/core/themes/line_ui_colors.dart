@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:wayline_app/ui/core/themes/app_theme.dart';
 
 class LineUiColors {
-    const LineUiColors._();
+  const LineUiColors._();
 
   static bool isDark(BuildContext context) =>
       Theme.of(context).brightness == Brightness.dark;
@@ -46,4 +46,3 @@ class LineUiColors {
         : Colors.white;
   }
 }
-  

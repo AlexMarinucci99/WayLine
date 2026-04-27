@@ -9,8 +9,8 @@ Color resolveTripColor({
   if (parsed != null) {
     return parsed;
   }
-  
-   const palette = <Color>[
+
+  const palette = <Color>[
     Color(0xFF0F5E8C),
     Color(0xFFC26B2C),
     Color(0xFF1D7A5F),
@@ -27,7 +27,8 @@ Color resolveTripColor({
       value.codeUnits.fold<int>(0, (sum, unit) => sum + unit) % palette.length;
   return palette[index];
 }
-  Color? _parseHex(String? value) {
+
+Color? _parseHex(String? value) {
   final cleaned = value?.trim() ?? '';
   if (cleaned.isEmpty) {
     return null;
@@ -43,9 +44,6 @@ Color resolveTripColor({
     buffer.write('FF');
   }
   buffer.write(normalized);
-  return Color(int.parse(buffer.toString(), radix: 16));
+  final parsed = int.tryParse(buffer.toString(), radix: 16);
+  return parsed == null ? null : Color(parsed);
 }
-
-
-  
-

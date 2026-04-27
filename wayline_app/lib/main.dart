@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:wayline_app/ui/core/ui/wayline_app.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(const WaylineApp());
 }
 
 class MyApp extends StatelessWidget {
